@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { CreditCard as Edit3, Save, X, Plus, Trash2 } from 'lucide-react';
 import { mockMenu } from '../../data/mockData';
 import { MenuItem } from '../../types';
-import { MenuItem } from '../../types';
 
 const MenuManagement: React.FC = () => {
   const [menu, setMenu] = useState<MenuItem[]>(mockMenu);

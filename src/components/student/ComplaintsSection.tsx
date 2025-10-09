@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { Camera, Send, AlertTriangle } from 'lucide-react';
 import { complaintCategories } from '../../data/mockData';
-import { Complaint } from '../../types';
+import { useComplaints } from '../../hooks/useDatabase';
 
 interface ComplaintsSectionProps {
   studentId: string;
   studentName: string;
-  complaints: Complaint[];
 }
-
-const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ complaints }) => {
-  const loading = false;
-  const error = null;
-};
 
 const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studentName }) => {
   const [complaint, setComplaint] = useState({
@@ -22,6 +16,7 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studen
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { createComplaint } = useComplaints();
   const { createComplaint } = useComplaints();
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,8 +31,13 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studen
     setIsSubmitting(true);
 
     try {
-      // This will be connected to database later
-      console.log('Creating complaint:', formData);
+      await createComplaint({
+        studentId,
+        studentName,
+        category: complaint.category,
+        description: complaint.description,
+        imageUrl: complaint.image ? 'placeholder-image-url' : null
+      });
       
       setIsSubmitting(false);
       setSubmitted(true);

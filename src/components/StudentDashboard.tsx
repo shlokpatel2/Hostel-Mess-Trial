@@ -5,7 +5,6 @@ import MenuSection from './student/MenuSection';
 import ComplaintsSection from './student/ComplaintsSection';
 import TippingSection from './student/TippingSection';
 import AnnouncementsSection from './student/AnnouncementsSection';
-import { mockMenu, mockWorkers, mockComplaints, mockAnnouncements } from '../data/mockData';
 
 interface StudentDashboardProps {
   user: User;
@@ -82,19 +81,15 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                   }`}
                 >
                   <IconComponent className="w-5 h-5" />
-          <MenuSection menu={mockMenu} />
+                  <span>{tab.label}</span>
                 </button>
               );
-            }
-            )
-            }
-          <ComplaintsSection complaints={mockComplaints} />
+            })}
           </div>
         </div>
-          <TippingSection workers={mockWorkers} />
         {/* Content */}
         <div className="transition-all duration-300">
-          <AnnouncementsSection announcements={mockAnnouncements} />
+          {renderContent()}
         </div>
       </div>
     </div>

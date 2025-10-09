@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { AlertTriangle, User, Calendar, Image, CheckCircle, Clock } from 'lucide-react';
 import { mockComplaints } from '../../data/mockData';
 import { Complaint } from '../../types';
-import { Complaint } from '../../types';
 
 const ComplaintManagement: React.FC = () => {
   const complaints = mockComplaints;
