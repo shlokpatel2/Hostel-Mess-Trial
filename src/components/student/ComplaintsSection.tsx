@@ -17,7 +17,6 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studen
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { createComplaint } = useComplaints();
-  const { createComplaint } = useComplaints();
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -36,7 +35,7 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studen
         studentName,
         category: complaint.category,
         description: complaint.description,
-        imageUrl: complaint.image ? 'placeholder-image-url' : null
+        image: complaint.image ? URL.createObjectURL(complaint.image) : undefined
       });
       
       setIsSubmitting(false);

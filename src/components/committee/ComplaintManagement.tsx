@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import { AlertTriangle, User, Calendar, Image, CheckCircle, Clock } from 'lucide-react';
-import { mockComplaints } from '../../data/mockData';
+import { useComplaints } from '../../hooks/useDatabase';
 import { Complaint } from '../../types';
 
 const ComplaintManagement: React.FC = () => {
-  const complaints = mockComplaints;
-  const loading = false;
-  const error = null;
-
-  const updateComplaintStatus = (complaintId: string, status: 'pending' | 'resolved') => {
-    // This will be connected to database later
-    console.log('Updating complaint status:', complaintId, status);
-  };
+  const { complaints, loading, error, updateComplaintStatus } = useComplaints();
   const [filter, setFilter] = useState<'all' | 'pending' | 'resolved'>('all');
 
   const filteredComplaints = complaints.filter(complaint => 

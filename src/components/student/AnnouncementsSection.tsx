@@ -1,14 +1,9 @@
 import React from 'react';
 import { Bell, AlertTriangle, Info, CheckCircle } from 'lucide-react';
-import { Announcement } from '../../types';
+import { useAnnouncements } from '../../hooks/useDatabase';
 
-interface AnnouncementsSectionProps {
-  announcements: Announcement[];
-}
-
-const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ announcements }) => {
-  const loading = false;
-  const error = null;
+const AnnouncementsSection: React.FC = () => {
+  const { announcements, loading, error } = useAnnouncements();
 
   const getPriorityIcon = (priority: string) => {
     switch (priority) {
