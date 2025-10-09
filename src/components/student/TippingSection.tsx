@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Heart, QrCode, Copy } from 'lucide-react';
 import { Worker } from '../../types';
 
-const TippingSection: React.FC = () => {
-  const [selectedWorker, setSelectedWorker] = useState<string | null>(null);
-  const [tipAmount, setTipAmount] = useState('');
 interface TippingSectionProps {
   workers: Worker[];
 }
 
 const TippingSection: React.FC<TippingSectionProps> = ({ workers }) => {
+  const [selectedWorker, setSelectedWorker] = useState<string | null>(null);
+  const [tipAmount, setTipAmount] = useState('');
+  const [showQR, setShowQR] = useState(false);
   const loading = false;
   const error = null;
 
