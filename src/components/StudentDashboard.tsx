@@ -85,6 +85,9 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
           <MenuSection menu={mockMenu} />
                 </button>
               );
+            }
+            )
+            }
           <ComplaintsSection complaints={mockComplaints} />
           </div>
         </div>
