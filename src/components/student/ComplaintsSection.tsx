@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Camera, Send, AlertTriangle } from 'lucide-react';
 import { complaintCategories } from '../../data/mockData';
+import { useComplaints } from '../../hooks/useDatabase';
 
 interface ComplaintsSectionProps {
   studentId: string;
+  studentName: string;
 }
 
-const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId }) => {
+const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studentName }) => {
   const [complaint, setComplaint] = useState({
     category: '',
     description: '',
@@ -14,6 +16,7 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { createComplaint } = useComplaints();
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -26,15 +29,25 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate submission
-    setTimeout(() => {
+    try {
+      await createComplaint({
+        studentId,
+        studentName,
+        category: complaint.category,
+        description: complaint.description,
+        image: complaint.image ? URL.createObjectURL(complaint.image) : undefined
+      });
+      
       setIsSubmitting(false);
       setSubmitted(true);
       setComplaint({ category: '', description: '', image: null });
       
       // Reset form after 3 seconds
       setTimeout(() => setSubmitted(false), 3000);
-    }, 2000);
+    } catch (error) {
+      setIsSubmitting(false);
+      console.error('Failed to submit complaint:', error);
+    }
   };
 
   if (submitted) {

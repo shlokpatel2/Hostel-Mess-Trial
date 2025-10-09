@@ -1,8 +1,10 @@
 import React from 'react';
 import { Bell, AlertTriangle, Info, CheckCircle } from 'lucide-react';
-import { announcements } from '../../data/mockData';
+import { useAnnouncements } from '../../hooks/useDatabase';
 
 const AnnouncementsSection: React.FC = () => {
+  const { announcements, loading, error } = useAnnouncements();
+
   const getPriorityIcon = (priority: string) => {
     switch (priority) {
       case 'high':
@@ -37,6 +39,31 @@ const AnnouncementsSection: React.FC = () => {
       minute: '2-digit'
     });
   };
+
+  if (loading) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+          <div className="space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-gray-200 rounded-xl h-24"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="text-center text-red-600">
+          <p>Error loading announcements: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
