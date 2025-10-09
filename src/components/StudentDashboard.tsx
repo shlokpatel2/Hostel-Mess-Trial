@@ -28,7 +28,7 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
       case 'menu':
         return <MenuSection />;
       case 'complaints':
-        return <ComplaintsSection studentId={user.id} />;
+        return <ComplaintsSection studentId={user.id} studentName={user.name} />;
       case 'tips':
         return <TippingSection />;
       case 'announcements':

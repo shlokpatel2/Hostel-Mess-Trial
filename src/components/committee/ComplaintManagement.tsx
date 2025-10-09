@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { AlertTriangle, User, Calendar, Image, CheckCircle, Clock } from 'lucide-react';
-import { mockComplaints } from '../../data/mockData';
+import { useComplaints } from '../../hooks/useDatabase';
 import { Complaint } from '../../types';
 
 const ComplaintManagement: React.FC = () => {
-  const [complaints, setComplaints] = useState<Complaint[]>(mockComplaints);
+  const { complaints, loading, error, updateComplaintStatus } = useComplaints();
   const [filter, setFilter] = useState<'all' | 'pending' | 'resolved'>('all');
 
   const filteredComplaints = complaints.filter(complaint => 
@@ -12,9 +12,7 @@ const ComplaintManagement: React.FC = () => {
   );
 
   const handleStatusChange = (complaintId: string, newStatus: 'pending' | 'resolved') => {
-    setComplaints(complaints.map(complaint =>
-      complaint.id === complaintId ? { ...complaint, status: newStatus } : complaint
-    ));
+    updateComplaintStatus(complaintId, newStatus);
   };
 
   const formatTime = (date: Date) => {
@@ -40,6 +38,31 @@ const ComplaintManagement: React.FC = () => {
     };
     return colors[category] || 'bg-gray-100 text-gray-800';
   };
+
+  if (loading) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+          <div className="space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-gray-200 rounded-xl h-32"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="text-center text-red-600">
+          <p>Error loading complaints: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
