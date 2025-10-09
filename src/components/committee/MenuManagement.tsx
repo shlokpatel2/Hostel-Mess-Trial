@@ -25,9 +25,10 @@ const MenuManagement: React.FC = () => {
     if (tempMenu) {
       setMenu(menu.map(item => 
         item.id === tempMenu.id ? tempMenu : item
+      ));
       // Update local state for now
       setMenu(prev => prev.map(item => 
-        item.id === editingDay ? editedMenu : item
+        item.id === editingDay ? tempMenu : item
       ));
       setEditingDay(null);
       setTempMenu(null);
