@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Camera, Send, AlertTriangle } from 'lucide-react';
 import { complaintCategories } from '../../data/mockData';
-import { useComplaints } from '../../hooks/useDatabase';
+import { Complaint } from '../../types';
 
 interface ComplaintsSectionProps {
   studentId: string;
   studentName: string;
+interface ComplaintsSectionProps {
+  complaints: Complaint[];
 }
 
+const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ complaints }) => {
+  const loading = false;
+  const error = null;
 const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studentName }) => {
   const [complaint, setComplaint] = useState({
     category: '',
@@ -30,13 +35,8 @@ const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studen
     setIsSubmitting(true);
 
     try {
-      await createComplaint({
-        studentId,
-        studentName,
-        category: complaint.category,
-        description: complaint.description,
-        image: complaint.image ? URL.createObjectURL(complaint.image) : undefined
-      });
+      // This will be connected to database later
+      console.log('Creating complaint:', formData);
       
       setIsSubmitting(false);
       setSubmitted(true);

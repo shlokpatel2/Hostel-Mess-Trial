@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, ChevronRight } from 'lucide-react';
-import { useMenu } from '../../hooks/useDatabase';
+import { MenuItem } from '../../types';
 
-const MenuSection: React.FC = () => {
-  const [showFullMenu, setShowFullMenu] = useState(false);
+interface MenuSectionProps {
+  menu: MenuItem[];
+}
+
+const MenuSection: React.FC<MenuSectionProps> = ({ menu }) => {
+  const loading = false;
+  const error = null;
   const { menu: weeklyMenu, loading, error } = useMenu();
   
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
