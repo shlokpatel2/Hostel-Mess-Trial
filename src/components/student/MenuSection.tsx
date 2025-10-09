@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, ChevronRight } from 'lucide-react';
+import { MenuItem } from '../../types';
 import { useMenu } from '../../hooks/useDatabase';
 
 const MenuSection: React.FC = () => {

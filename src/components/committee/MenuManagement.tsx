@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { CreditCard as Edit3, Save, X, Plus, Trash2 } from 'lucide-react';
-import { weeklyMenu } from '../../data/mockData';
+import { mockMenu } from '../../data/mockData';
 import { MenuItem } from '../../types';
 
 const MenuManagement: React.FC = () => {
-  const [menu, setMenu] = useState<MenuItem[]>(weeklyMenu);
+  const [menu, setMenu] = useState<MenuItem[]>(mockMenu);
+  const loading = false;
+  const error = null;
   const [editingDay, setEditingDay] = useState<string | null>(null);
   const [tempMenu, setTempMenu] = useState<MenuItem | null>(null);
 
@@ -22,6 +24,10 @@ const MenuManagement: React.FC = () => {
     if (tempMenu) {
       setMenu(menu.map(item => 
         item.id === tempMenu.id ? tempMenu : item
+      ));
+      // Update local state for now
+      setMenu(prev => prev.map(item => 
+        item.id === editingDay ? tempMenu : item
       ));
       setEditingDay(null);
       setTempMenu(null);

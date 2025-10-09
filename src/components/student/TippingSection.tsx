@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Heart, QrCode, Copy } from 'lucide-react';
-import { useWorkers } from '../../hooks/useDatabase';
+import { Worker } from '../../types';
 
-const TippingSection: React.FC = () => {
+interface TippingSectionProps {
+  workers: Worker[];
+}
+
+const TippingSection: React.FC<TippingSectionProps> = ({ workers }) => {
   const [selectedWorker, setSelectedWorker] = useState<string | null>(null);
   const [tipAmount, setTipAmount] = useState('');
   const [showQR, setShowQR] = useState(false);
-  const { workers, loading, error } = useWorkers();
+  const loading = false;
+  const error = null;
 
   const handleTip = (workerId: string) => {
     setSelectedWorker(workerId);

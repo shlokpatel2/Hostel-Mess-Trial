@@ -81,13 +81,12 @@ const StudentDashboard: React.FC<StudentDashboardProps> = ({ user, onLogout }) =
                   }`}
                 >
                   <IconComponent className="w-5 h-5" />
-                  <span className="hidden sm:block">{tab.label}</span>
+                  <span>{tab.label}</span>
                 </button>
               );
             })}
           </div>
         </div>
-
         {/* Content */}
         <div className="transition-all duration-300">
           {renderContent()}
