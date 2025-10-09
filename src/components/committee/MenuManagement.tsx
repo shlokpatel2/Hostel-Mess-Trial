@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { CreditCard as Edit3, Save, X, Plus, Trash2 } from 'lucide-react';
-import { useMenu } from '../../hooks/useDatabase';
+import { weeklyMenu } from '../../data/mockData';
 import { MenuItem } from '../../types';
 
 const MenuManagement: React.FC = () => {
-  const { menu, loading, error, updateMenu } = useMenu();
+  const [menu, setMenu] = useState<MenuItem[]>(weeklyMenu);
   const [editingDay, setEditingDay] = useState<string | null>(null);
   const [tempMenu, setTempMenu] = useState<MenuItem | null>(null);
 
@@ -18,9 +18,11 @@ const MenuManagement: React.FC = () => {
     setTempMenu(null);
   };
 
-  const handleEditSave = async () => {
+  const handleEditSave = () => {
     if (tempMenu) {
-      await updateMenu(tempMenu.id, tempMenu);
+      setMenu(menu.map(item => 
+        item.id === tempMenu.id ? tempMenu : item
+      ));
       setEditingDay(null);
       setTempMenu(null);
     }
@@ -54,31 +56,6 @@ const MenuManagement: React.FC = () => {
       });
     }
   };
-
-  if (loading) {
-    return (
-      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
-          <div className="grid gap-6 lg:grid-cols-2">
-            {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-              <div key={i} className="bg-gray-200 rounded-xl h-64"></div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
-        <div className="text-center text-red-600">
-          <p>Error loading menu: {error}</p>
-        </div>
-      </div>
-    );
-  }
 
   const renderMealSection = (mealType: 'breakfast' | 'lunch' | 'snacks' | 'dinner', items: string[], color: string) => {
     const isEditing = editingDay && tempMenu;

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, ChevronRight } from 'lucide-react';
-import { weeklyMenu } from '../../data/mockData';
+import { useMenu } from '../../hooks/useDatabase';
 
 const MenuSection: React.FC = () => {
   const [showFullMenu, setShowFullMenu] = useState(false);
+  const { menu: weeklyMenu, loading, error } = useMenu();
   
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
   const todayMenu = weeklyMenu.find(menu => menu.day === today) || weeklyMenu[0];
@@ -12,6 +13,31 @@ const MenuSection: React.FC = () => {
     month: 'long', 
     day: 'numeric' 
   });
+
+  if (loading) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+          <div className="space-y-3">
+            <div className="h-4 bg-gray-200 rounded"></div>
+            <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="text-center text-red-600">
+          <p>Error loading menu: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   const mealTimes = [
     { name: 'Breakfast', time: '7:30 - 10:00 AM', items: todayMenu.breakfast },
