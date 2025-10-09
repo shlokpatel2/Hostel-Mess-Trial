@@ -6,49 +6,56 @@ export const weeklyMenu: MenuItem[] = [
     day: 'Monday',
     breakfast: ['Poha', 'Bread & Butter', 'Tea/Coffee'],
     lunch: ['Rice', 'Dal Tadka', 'Aloo Sabzi', 'Roti', 'Salad'],
-    dinner: ['Rice', 'Rajma', 'Mixed Vegetables', 'Roti', 'Curd']
+    dinner: ['Rice', 'Rajma', 'Mixed Vegetables', 'Roti', 'Curd'],
+    snacks: ['Samosa', 'Tea', 'Biscuits']
   },
   {
     id: '2',
     day: 'Tuesday',
     breakfast: ['Upma', 'Banana', 'Tea/Coffee'],
     lunch: ['Rice', 'Sambar', 'Bhindi Fry', 'Roti', 'Pickle'],
-    dinner: ['Rice', 'Chana Masala', 'Cauliflower Curry', 'Roti', 'Raita']
+    dinner: ['Rice', 'Chana Masala', 'Cauliflower Curry', 'Roti', 'Raita'],
+    snacks: ['Pakora', 'Coffee', 'Namkeen']
   },
   {
     id: '3',
     day: 'Wednesday',
     breakfast: ['Paratha', 'Curd', 'Tea/Coffee'],
     lunch: ['Rice', 'Dal Fry', 'Palak Paneer', 'Roti', 'Salad'],
-    dinner: ['Rice', 'Kadhi', 'Aloo Gobi', 'Roti', 'Pickle']
+    dinner: ['Rice', 'Kadhi', 'Aloo Gobi', 'Roti', 'Pickle'],
+    snacks: ['Bread Pakora', 'Tea', 'Chips']
   },
   {
     id: '4',
     day: 'Thursday',
     breakfast: ['Idli Sambar', 'Coconut Chutney', 'Tea/Coffee'],
     lunch: ['Rice', 'Rasam', 'Egg Curry', 'Roti', 'Papad'],
-    dinner: ['Rice', 'Dal Makhani', 'Jeera Aloo', 'Roti', 'Curd']
+    dinner: ['Rice', 'Dal Makhani', 'Jeera Aloo', 'Roti', 'Curd'],
+    snacks: ['Vada Pav', 'Coffee', 'Mixture']
   },
   {
     id: '5',
     day: 'Friday',
     breakfast: ['Dosa', 'Sambar', 'Chutney', 'Tea/Coffee'],
     lunch: ['Rice', 'Dal', 'Fish Curry', 'Roti', 'Salad'],
-    dinner: ['Rice', 'Paneer Butter Masala', 'Green Beans', 'Roti', 'Raita']
+    dinner: ['Rice', 'Paneer Butter Masala', 'Green Beans', 'Roti', 'Raita'],
+    snacks: ['Dhokla', 'Tea', 'Sev']
   },
   {
     id: '6',
     day: 'Saturday',
     breakfast: ['Puri Bhaji', 'Tea/Coffee'],
     lunch: ['Rice', 'Sambar', 'Chicken Curry', 'Roti', 'Pickle'],
-    dinner: ['Rice', 'Dal', 'Mix Veg', 'Roti', 'Curd', 'Ice Cream']
+    dinner: ['Rice', 'Dal', 'Mix Veg', 'Roti', 'Curd', 'Ice Cream'],
+    snacks: ['Pani Puri', 'Coffee', 'Bhel Puri']
   },
   {
     id: '7',
     day: 'Sunday',
     breakfast: ['Chole Bhature', 'Tea/Coffee'],
     lunch: ['Rice', 'Dal', 'Mutton Curry', 'Roti', 'Salad'],
-    dinner: ['Rice', 'Rajma', 'Cabbage Sabzi', 'Roti', 'Sweet Dish']
+    dinner: ['Rice', 'Rajma', 'Cabbage Sabzi', 'Roti', 'Sweet Dish'],
+    snacks: ['Jalebi', 'Tea', 'Mathri']
   }
 ];
 

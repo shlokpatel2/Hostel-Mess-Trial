@@ -11,6 +11,7 @@ export interface MenuItem {
   breakfast: string[];
   lunch: string[];
   dinner: string[];
+  snacks: string[];
 }
 
 export interface Worker {

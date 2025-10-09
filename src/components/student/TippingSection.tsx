@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Heart, QrCode, Copy } from 'lucide-react';
-import { workers } from '../../data/mockData';
+import { useWorkers } from '../../hooks/useDatabase';
 
 const TippingSection: React.FC = () => {
   const [selectedWorker, setSelectedWorker] = useState<string | null>(null);
   const [tipAmount, setTipAmount] = useState('');
   const [showQR, setShowQR] = useState(false);
+  const { workers, loading, error } = useWorkers();
 
   const handleTip = (workerId: string) => {
     setSelectedWorker(workerId);
@@ -18,6 +19,31 @@ const TippingSection: React.FC = () => {
   };
 
   const selectedWorkerData = workers.find(w => w.id === selectedWorker);
+
+  if (loading) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-gray-200 rounded-xl h-48"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6">
+        <div className="text-center text-red-600">
+          <p>Error loading workers: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

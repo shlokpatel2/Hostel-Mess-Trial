@@ -29,6 +29,7 @@ const MenuManagement: React.FC = () => {
   };
 
   const addMealItem = (mealType: 'breakfast' | 'lunch' | 'dinner') => {
+  const addMealItem = (mealType: 'breakfast' | 'lunch' | 'snacks' | 'dinner') => {
     if (tempMenu) {
       setTempMenu({
         ...tempMenu,
@@ -38,6 +39,7 @@ const MenuManagement: React.FC = () => {
   };
 
   const removeMealItem = (mealType: 'breakfast' | 'lunch' | 'dinner', index: number) => {
+  const removeMealItem = (mealType: 'breakfast' | 'lunch' | 'snacks' | 'dinner', index: number) => {
     if (tempMenu) {
       setTempMenu({
         ...tempMenu,
@@ -47,6 +49,7 @@ const MenuManagement: React.FC = () => {
   };
 
   const updateMealItem = (mealType: 'breakfast' | 'lunch' | 'dinner', index: number, value: string) => {
+  const updateMealItem = (mealType: 'breakfast' | 'lunch' | 'snacks' | 'dinner', index: number, value: string) => {
     if (tempMenu) {
       const updatedMeal = [...tempMenu[mealType]];
       updatedMeal[index] = value;
@@ -58,6 +61,7 @@ const MenuManagement: React.FC = () => {
   };
 
   const renderMealSection = (mealType: 'breakfast' | 'lunch' | 'dinner', items: string[], color: string) => {
+  const renderMealSection = (mealType: 'breakfast' | 'lunch' | 'snacks' | 'dinner', items: string[], color: string) => {
     const isEditing = editingDay && tempMenu;
     const currentItems = isEditing ? tempMenu[mealType] : items;
 
@@ -156,6 +160,7 @@ const MenuManagement: React.FC = () => {
               <div className="space-y-6">
                 {renderMealSection('breakfast', dayMenu.breakfast, 'text-orange-600')}
                 {renderMealSection('lunch', dayMenu.lunch, 'text-green-600')}
+                {renderMealSection('snacks', dayMenu.snacks, 'text-pink-600')}
                 {renderMealSection('dinner', dayMenu.dinner, 'text-purple-600')}
               </div>
             </div>
