@@ -6,13 +6,14 @@ import { Complaint } from '../../types';
 interface ComplaintsSectionProps {
   studentId: string;
   studentName: string;
-interface ComplaintsSectionProps {
   complaints: Complaint[];
 }
 
 const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ complaints }) => {
   const loading = false;
   const error = null;
+};
+
 const ComplaintsSection: React.FC<ComplaintsSectionProps> = ({ studentId, studentName }) => {
   const [complaint, setComplaint] = useState({
     category: '',
